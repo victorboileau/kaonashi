@@ -1,0 +1,55 @@
+erDiagram
+    USER ||--o{ RECIPE : creates
+    USER ||--o{ COMMENT : writes
+    USER ||--o{ FAVORITE : saves
+
+    RECIPE ||--o{ COMMENT : receives
+    RECIPE ||--o{ FAVORITE : saved_in
+    RECIPE }o--o{ RECIPE_CATEGORY : categorized_as
+
+    CATEGORY ||--o{ RECIPE_CATEGORY : contains
+
+    USER {
+        int id PK
+        string username
+        string email
+        string password_hash
+        string role
+        datetime created_at
+    }
+
+    RECIPE {
+        int id PK
+        string title
+        string film_series
+        text ingredients
+        text instructions
+        datetime created_at
+        int author_id FK
+    }
+
+    CATEGORY {
+        int id PK
+        string name
+    }
+
+    COMMENT {
+        int id PK
+        text content
+        float rating
+        datetime created_at
+        int user_id FK
+        int recipe_id FK
+    }
+
+    FAVORITE {
+        int id PK
+        int user_id FK
+        int recipe_id FK
+    }
+
+    RECIPE_CATEGORY {
+        int id PK
+        int recipe_id FK
+        int category_id FK
+    }

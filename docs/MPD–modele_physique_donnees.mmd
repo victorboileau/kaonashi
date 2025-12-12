@@ -1,0 +1,38 @@
+graph TD
+A[Table: users] -->|PK id| A
+A --> username
+A --> email
+A --> password_hash
+A --> role
+A --> created_at
+
+
+B[Table: recipes] -->|PK id| B
+B --> title
+B --> film_series
+B --> ingredients
+B --> instructions
+B --> created_at
+B -->|FK author_id -> users.id| A
+
+
+C[Table: categories] -->|PK id| C
+C --> name
+
+
+D[Table: recipe_category] -->|PK id| D
+D -->|FK recipe_id -> recipes.id| B
+D -->|FK category_id -> categories.id| C
+
+
+E[Table: comments] -->|PK id| E
+E --> content
+E --> rating
+E --> created_at
+E -->|FK user_id -> users.id| A
+E -->|FK recipe_id -> recipes.id| B
+
+
+F[Table: favorites] -->|PK id| F
+F -->|FK user_id -> users.id| A
+F -->|FK recipe_id -> recipes.id| B

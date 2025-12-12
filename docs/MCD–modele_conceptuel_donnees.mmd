@@ -1,0 +1,52 @@
+erDiagram
+USER ||--o{ RECIPE : "creates"
+USER ||--o{ FAVORITE : "saves"
+USER ||--o{ COMMENT : "writes"
+
+
+RECIPE ||--o{ COMMENT : "receives"
+RECIPE }o--o{ CATEGORY : "belongs_to"
+
+
+USER {
+int id
+string username
+string email
+string password_hash
+string role
+datetime created_at
+}
+
+
+RECIPE {
+int id
+string title
+string film_series
+text ingredients
+text instructions
+datetime created_at
+int author_id
+}
+
+
+CATEGORY {
+int id
+string name
+}
+
+
+COMMENT {
+int id
+text content
+float rating
+datetime created_at
+int user_id
+int recipe_id
+}
+
+
+FAVORITE {
+int id
+int user_id
+int recipe_id
+}
